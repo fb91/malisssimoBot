@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: malisssimo-bot-service
+spec:
+  type: LoadBalancer
+  selector:
+    app: malisssimo-bot
+  ports:
+  - protocol: TCP
+    port: 8080
+    targetPort: 8080

@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: malisssimo-bot-deployment
+  labels:
+    app: malisssimo-bot
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: malisssimo-bot
+  template:
+    metadata:
+      name: malisssimo-bot
+      labels:
+        app: malisssimo-bot
+    spec:
+      containers:
+        - name: bot
+          image: fb91/malisssimo-bot
+          ports:
+          - containerPort: 8080
+          env:
+            - name: BOT_TOKEN
+              valueFrom:
+                configMapKeyRef:
+                  name: malisssimo-bot-config
+                  key: bot-token
+            - name: BOT_USERNAME
+              valueFrom:
+                configMapKeyRef:
+                  name: malisssimo-bot-config
+                  key: bot-username
+        - name: twitter-consumer
+          image: fb91/twitter-malisssimo-consumer
+          env:
+            - name: TWITTER_BEARER
+              valueFrom:
+                configMapKeyRef:
+                  name: twitter-malisssimo-consumer-config
+                  key: twitter-bearer

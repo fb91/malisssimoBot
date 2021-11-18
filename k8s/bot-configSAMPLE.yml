@@ -1,0 +1,7 @@
+#apiVersion: v1
+#kind: ConfigMap
+#metadata:
+#  name: malisssimo-bot-config
+#data:
+#  bot-token: "tokenValueHere"
+#  bot-username: "usernameValueHere"
