@@ -37,7 +37,7 @@ public class MalisssimoBot extends TelegramLongPollingBot {
         String instructions = "De momento sólo se contar chistes...\n\n➡️ Escribe \"chiste\" para que te cuente uno... ";
         if (txtReceived.equals(START) || txtReceived.equalsIgnoreCase("hola")) {
             replyMessage.setText(WELCOME_MESSAGE + instructions);
-        } else if (txtReceived.toLowerCase().matches("[a-zA-Z ,.!]*chiste+[a-zA-Z ,.!]*")) {
+        } else if (txtReceived.toLowerCase().matches(".*chiste+.*")) {
             replyMessage.setText(jokeService.retrieveRandomJoke());
         } else if (txtReceived.matches("(j*h*a*e*o*J*H*A*E*O*)+")) {
             replyMessage.setText(jokeService.retrieveLaugh());
